@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - cert:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - share:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    environment:
+      DEFAULT_EMAIL: YOUR_EMAIL@TLD.com
+      NGINX_PROXY_CONTAINER: nginx-proxy
+    volumes:
+      - type: volume
+        source: cert
+        target: /etc/nginx/certs
+        volume:
+          nocopy: true
+      - type: volume
+        source: vhost
+        target: /etc/nginx/vhost.d
+        volume:
+          nocopy: true
+      - type: volume
+        source: share
+        target: /usr/share/nginx/html
+        volume:
+          nocopy: true
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+networks:
+  default:
+    external:
+      name: YOUR_APP_NETWORK
+volumes:
+  cert:
+  vhost:
+  share:
