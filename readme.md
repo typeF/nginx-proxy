@@ -9,7 +9,7 @@ CAA
 0 issue letsencrypt.org
 ```
 
-Replace the DEFAULT_EMAIL and network name variables with your own.
+Replace the DEFAULT_EMAIL and network name variables in docker-compose.yml with your own.
 
 Setup the docker container
 ```
