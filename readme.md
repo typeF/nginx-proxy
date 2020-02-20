@@ -1,5 +1,5 @@
 # About
-Docker-compose file for setting up nginx & letsencrypt based on [nginx-proxy and nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion)
+Docker-compose file for setting up nginx & letsencrypt that combines docker command line setup for both containers on [nginx-proxy and nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion)
 
 # Setup
 
